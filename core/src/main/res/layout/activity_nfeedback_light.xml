@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp" >
+
+    <TextView
+        android:id="@+id/activity_feedback_header_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Developer feedback"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="20dp"
+        android:typeface="normal" />
+
+    <EditText
+        android:id="@+id/activity_feedback_name_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Name"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="16sp"
+        android:typeface="normal" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/activity_feedback_feedback_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:gravity="top|left"
+        android:hint="Feedback here..."
+        android:maxLines="5"
+        android:minLines="5"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/activity_feedback_image_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Add screenshot"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/activity_feedback_send_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Send"
+        android:typeface="normal" />
+
+</LinearLayout>
