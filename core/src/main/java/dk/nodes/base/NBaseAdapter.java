@@ -14,24 +14,10 @@ public abstract class NBaseAdapter extends BaseAdapter {
 	public NBaseAdapter(Context mContext){
 		inflater = LayoutInflater.from(mContext);
 		this.mContext = mContext;
-		setList();
 	}
 
 	protected Context getContext(){
 		return mContext;
-	}
-
-	/**
-	 * Set the list here, this will be called in constructor & notifyDataSetChangedSetListBefore
-	 */
-	protected abstract void setList();
-	
-	/**
-	 * Use this instead of notifyDataSetChanges, if you wish to reload the list before
-	 */
-	public void notifyDataSetChangedSetListBefore() {
-		setList();
-		super.notifyDataSetChanged();
 	}
 
 	@Override
@@ -60,7 +46,7 @@ public abstract class NBaseAdapter extends BaseAdapter {
 	}
 
 	/**
-	 * This will tricker the onLoadNextPage if 
+	 * This will trigger the onLoadNextPage if
 	 * @param position
 	 */
 	protected void onGetView(int position){

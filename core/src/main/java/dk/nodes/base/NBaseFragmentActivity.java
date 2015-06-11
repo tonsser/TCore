@@ -23,7 +23,6 @@ public abstract class NBaseFragmentActivity extends FragmentActivity {
 	private BroadcastReceiver finishReciever;
 	public Activity mActivity;
 	private ArrayList<BroadcastReceiver> finishExtraReciever = new ArrayList<BroadcastReceiver>();
-	private ArrayList<BroadcastReceiver> extraReciever = new ArrayList<BroadcastReceiver>();
 	protected boolean SHAKE_FEEDBACK_ENABLED = true;
 	private boolean isResumed;
 
@@ -109,38 +108,11 @@ public abstract class NBaseFragmentActivity extends FragmentActivity {
 		}	
 	}
 
-	/**
-	 * Deprecated because receivers should be managed by the fragment itself, and not it's activity.
-	 */
-	@Deprecated
-	protected void registerExtraBroadCastReciever(String action,BroadcastReceiver mBroadcastReceiver){
-		IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction(action); 
-		extraReciever .add(mBroadcastReceiver);		
-		try {
-			LocalBroadcastManager.getInstance(this).registerReceiver(extraReciever.get(extraReciever.size()-1), intentFilter);
-		} catch (Exception e) {
-			NLog.e(TAG +" registerExtraBroadCastReciever", e);
-		}	
-	}
-
 	public void onDestroy(){
 		super.onDestroy(); 
 		if(finishReciever!= null)
 			LocalBroadcastManager.getInstance(this).unregisterReceiver(finishReciever);
-		unregisterExtraRecievers();
 		unregisterFinishExtraRecievers();
-	}
-
-	/**
-	 * Deprecated because receivers should be managed by the fragment itself, and not it's activity.
-	 */
-	@Deprecated
-	public void unregisterExtraRecievers(){
-		for(BroadcastReceiver mBroadcastReceiver : extraReciever)
-			LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
-		
-		extraReciever.clear();
 	}
 	
 	public void unregisterFinishExtraRecievers(){

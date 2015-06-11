@@ -21,7 +21,6 @@ public class NBaseActivity extends Activity {
 	protected boolean SHAKE_FEEDBACK_ENABLED = true;
 	private BroadcastReceiver finishReciever;
 	private ArrayList<BroadcastReceiver> finishExtraReciever = new ArrayList<BroadcastReceiver>();
-	private ArrayList<BroadcastReceiver> extraReciever = new ArrayList<BroadcastReceiver>();
 	protected Activity mActivity;
 	private boolean isResumed = false;
 
