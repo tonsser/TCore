@@ -13,7 +13,7 @@ import dk.nodes.base.NBaseApplication;
 import dk.nodes.controllers.versionsandcrashes.util.NVersionASync;
 import dk.nodes.controllers.versionsandcrashes.util.NVersionASync.NVersioAsyncListener;
 import dk.nodes.controllers.versionsandcrashes.util.NVersionAlertOptions;
-import dk.nodes.controllers.versionsandcrashes.util.NVersionOtions;
+import dk.nodes.controllers.versionsandcrashes.util.NVersionOptions;
 import dk.nodes.controllers.versionsandcrashes.util.NVersionSharedPrefController;
 import dk.nodes.controllers.versionsandcrashes.util.NVersionType;
 import dk.nodes.utils.NBuild;
@@ -25,7 +25,7 @@ public class NVersionAndCrash {
 	private static NVersionAndCrash instance;
 	private HockeyListener mHockeyListener;
 	private NVersionListener mNVersionListener;
-	private NVersionOtions mNVersionOtions = new NVersionOtions();
+	private NVersionOptions mNVersionOptions = new NVersionOptions();
 
 	private NVersionDialog mNVersionDialog;
 
@@ -36,12 +36,12 @@ public class NVersionAndCrash {
 		return instance;
 	}
 
-	public void setOptions(NVersionOtions mNVersionOtions){
-		this.mNVersionOtions = mNVersionOtions;
+	public void setOptions(NVersionOptions mNVersionOptions){
+		this.mNVersionOptions = mNVersionOptions;
 	}
 
-	public NVersionOtions getOptions(){
-		return mNVersionOtions;
+	public NVersionOptions getOptions(){
+		return mNVersionOptions;
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class NVersionAndCrash {
 				if(mNVersionListener != null)
 					mNVersionListener.onNodesUpdate(false, changelog);
 				else
-					buildDialog(mActivity, mNVersionOtions, NVersionType.UPDATE, changelog);
+					buildDialog(mActivity, mNVersionOptions, NVersionType.UPDATE, changelog);
 				
 				//mark 'version' as read
 				NVersionSharedPrefController.setReadUpdateVersion(mActivity, version);
@@ -120,7 +120,7 @@ public class NVersionAndCrash {
 				if(mNVersionListener != null)
 					mNVersionListener.onNodesUpdate(true, changelog);
 				else
-					buildDialog(mActivity, mNVersionOtions, NVersionType.FORCE_UPDATE, changelog);
+					buildDialog(mActivity, mNVersionOptions, NVersionType.FORCE_UPDATE, changelog);
 			}
 
 			@Override
@@ -134,7 +134,7 @@ public class NVersionAndCrash {
 				if(mNVersionListener != null)
 					mNVersionListener.oNodesNewThisVersion(message);
 				else
-					buildDialog(mActivity, mNVersionOtions, NVersionType.NEW_IN_VERSION, message);
+					buildDialog(mActivity, mNVersionOptions, NVersionType.NEW_IN_VERSION, message);
 				
 				//mark 'new in version' as read
 				NVersionSharedPrefController.setReadNewInThisVersion(mActivity, NBuild.getVersionName(mActivity));
@@ -145,8 +145,8 @@ public class NVersionAndCrash {
 				if(mNVersionListener != null)
 					mNVersionListener.oNodesNewThisVersion(message);
 				else{
-					mNVersionOtions.setNVersionAlertOptions(new NVersionAlertOptions(header, message, modified));
-					buildDialog(mActivity, mNVersionOtions, NVersionType.ALERT, message);
+					mNVersionOptions.setNVersionAlertOptions(new NVersionAlertOptions(header, message, modified));
+					buildDialog(mActivity, mNVersionOptions, NVersionType.ALERT, message);
 				}
 				
 				NVersionSharedPrefController.setReadAlert(mActivity, modified);
@@ -162,13 +162,13 @@ public class NVersionAndCrash {
 		this.mNVersionListener = null;
 	}
 	
-	private void buildDialog(Activity mActivity, NVersionOtions mNVersionOtions, NVersionType type, String message){
+	private void buildDialog(Activity mActivity, NVersionOptions mNVersionOptions, NVersionType type, String message){
 
 		//Don't build dialog if already showing
 		if(mNVersionDialog != null && mNVersionDialog.isShowing())
 			return;
 
-		mNVersionDialog = new NVersionDialog(mActivity, mNVersionOtions, type, message);
+		mNVersionDialog = new NVersionDialog(mActivity, mNVersionOptions, type, message);
 		mNVersionDialog.show();
 	}
 

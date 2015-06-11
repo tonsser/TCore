@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 
+@Deprecated
 public class NHorizontalScrollView extends HorizontalScrollView {
 
 public NHorizontalScrollView(Context context, AttributeSet attrs, int defStyle) {

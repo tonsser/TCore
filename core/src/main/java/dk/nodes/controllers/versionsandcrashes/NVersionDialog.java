@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import dk.nodes.controllers.font.NFontContainer;
-import dk.nodes.controllers.versionsandcrashes.util.NVersionOtions;
+import dk.nodes.controllers.versionsandcrashes.util.NVersionOptions;
 import dk.nodes.controllers.versionsandcrashes.util.NVersionType;
 import dk.nodes.ncore.R;
 import dk.nodes.utils.NAndroidIntents;
@@ -15,7 +15,7 @@ import dk.nodes.widgets.dialogs.NDialog;
 
 public class NVersionDialog extends NDialog{
 
-	private NVersionOtions mNVersionOtions;
+	private NVersionOptions mNVersionOptions;
 	private TextView headerTv;
 	private NVersionType type;
 	private String message;
@@ -25,17 +25,17 @@ public class NVersionDialog extends NDialog{
 	private Activity mActivity;
 	private FrameLayout btnSeperatorFl;
 
-	public NVersionDialog(Activity mActivity, NVersionOtions mNVersionOtions, NVersionType type, String message) {
+	public NVersionDialog(Activity mActivity, NVersionOptions mNVersionOptions, NVersionType type, String message) {
 		super(mActivity, R.style.Theme_AppCompat_Dialog);
 		AUTO_DISMISS_ON_FOCUS_LOST = false;
 
 		this.mActivity = mActivity;
-		this.mNVersionOtions = mNVersionOtions;
+		this.mNVersionOptions = mNVersionOptions;
 
 		this.type = type;
 		this.message = message;
 
-		setContentView(mNVersionOtions.getContentViewResource());
+		setContentView(mNVersionOptions.getContentViewResource());
 		initResources();
 
 		if(type == NVersionType.FORCE_UPDATE){
@@ -51,22 +51,22 @@ public class NVersionDialog extends NDialog{
 	private void initResources() {
 		//Title
 		headerTv = (TextView) findViewById(R.id.dialog_nversion_header_tv);
-		NFontContainer.setFont(mNVersionOtions.getHeaderFont(), headerTv);
+		NFontContainer.setFont(mNVersionOptions.getHeaderFont(), headerTv);
 
 		if(type == NVersionType.NEW_IN_VERSION){
-			headerTv.setText(mNVersionOtions.getNewInThisVersionHeader());
+			headerTv.setText(mNVersionOptions.getNewInThisVersionHeader());
 		}
 		else if(type == NVersionType.UPDATE || type == NVersionType.FORCE_UPDATE){
-			headerTv.setText(mNVersionOtions.getUpdateHeader());
+			headerTv.setText(mNVersionOptions.getUpdateHeader());
 		}
 		else if(type == NVersionType.ALERT){
-			if(mNVersionOtions.getNVersionAlertOptions().getHeader() != null)
-				headerTv.setText(mNVersionOtions.getNVersionAlertOptions().getHeader());
+			if(mNVersionOptions.getNVersionAlertOptions().getHeader() != null)
+				headerTv.setText(mNVersionOptions.getNVersionAlertOptions().getHeader());
 		}
 
 		//Message
 		messageTv = (TextView) findViewById(R.id.dialog_nversion_message_tv);
-		NFontContainer.setFont(mNVersionOtions.getMessageFont(), messageTv);
+		NFontContainer.setFont(mNVersionOptions.getMessageFont(), messageTv);
 
 		//NEW IN VERSION
 		if(type == NVersionType.NEW_IN_VERSION && message != null){
@@ -75,25 +75,25 @@ public class NVersionDialog extends NDialog{
 		//UPDATE
 		else if(type == NVersionType.UPDATE){
 			if(message != null)
-				messageTv.setText(mNVersionOtions.getUpdateMessage() + "\n\n" + message);
+				messageTv.setText(mNVersionOptions.getUpdateMessage() + "\n\n" + message);
 			else
-				messageTv.setText(mNVersionOtions.getUpdateMessage());
+				messageTv.setText(mNVersionOptions.getUpdateMessage());
 		}
 		//FORCE UPDATE
 		else if(type == NVersionType.FORCE_UPDATE){
 			if(message != null)
-				messageTv.setText(mNVersionOtions.getUpdateMessageForced()+ "\n\n" +message);
+				messageTv.setText(mNVersionOptions.getUpdateMessageForced()+ "\n\n" +message);
 			else
-				messageTv.setText(mNVersionOtions.getUpdateMessageForced());
+				messageTv.setText(mNVersionOptions.getUpdateMessageForced());
 		}
 		else if(type == NVersionType.ALERT){
-			if(mNVersionOtions.getNVersionAlertOptions().getMessage() != null)
-				messageTv.setText(mNVersionOtions.getNVersionAlertOptions().getMessage());
+			if(mNVersionOptions.getNVersionAlertOptions().getMessage() != null)
+				messageTv.setText(mNVersionOptions.getNVersionAlertOptions().getMessage());
 		}
 		
 		//Cancel btn
 		cancelBtn = (Button) findViewById(R.id.dialog_nversion_cancel_btn);
-		NFontContainer.setFont(mNVersionOtions.getBtnFont(), cancelBtn);
+		NFontContainer.setFont(mNVersionOptions.getBtnFont(), cancelBtn);
 
 		if(type == NVersionType.FORCE_UPDATE)
 			cancelBtn.setVisibility(View.GONE);
@@ -101,13 +101,13 @@ public class NVersionDialog extends NDialog{
 			cancelBtn.setVisibility(View.VISIBLE);
 
 		if(type == NVersionType.NEW_IN_VERSION){
-			cancelBtn.setText(mNVersionOtions.getNewInThisVersionOkBtn());
+			cancelBtn.setText(mNVersionOptions.getNewInThisVersionOkBtn());
 		}
 		else if(type == NVersionType.ALERT){
-			cancelBtn.setText(mNVersionOtions.getNewInThisVersionOkBtn()); // Just using this even though it should have its own!
+			cancelBtn.setText(mNVersionOptions.getNewInThisVersionOkBtn()); // Just using this even though it should have its own!
 		}
 		else{
-			cancelBtn.setText(mNVersionOtions.getUpdateNoBtn());
+			cancelBtn.setText(mNVersionOptions.getUpdateNoBtn());
 		}
 
 		cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -120,9 +120,9 @@ public class NVersionDialog extends NDialog{
 
 		//Store btn
 		storeBtn = (Button) findViewById(R.id.dialog_nversion_store_btn);
-		NFontContainer.setFont(mNVersionOtions.getBtnFont(), storeBtn);
+		NFontContainer.setFont(mNVersionOptions.getBtnFont(), storeBtn);
 
-		storeBtn.setText(mNVersionOtions.getUpdateGoToStoreBtn());
+		storeBtn.setText(mNVersionOptions.getUpdateGoToStoreBtn());
 
 		if(type == NVersionType.NEW_IN_VERSION || type == NVersionType.ALERT)
 			storeBtn.setVisibility(View.GONE);

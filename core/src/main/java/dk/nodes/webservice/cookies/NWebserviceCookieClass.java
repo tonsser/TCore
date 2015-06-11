@@ -9,6 +9,7 @@ import org.apache.http.impl.cookie.BasicClientCookie;
 import java.io.Serializable;
 import java.util.Date;
 
+@Deprecated
 public class NWebserviceCookieClass implements Serializable {
 	private static final long serialVersionUID = 1L; // Version 1
 	public String name;

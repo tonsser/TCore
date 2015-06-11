@@ -3,6 +3,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ViewFlipper;
 
+@Deprecated
 public class NViewFlipper extends ViewFlipper {
 /**
  * Use this ViewFlipper to prevent stupid crash reports

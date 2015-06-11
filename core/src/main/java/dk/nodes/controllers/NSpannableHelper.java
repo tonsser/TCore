@@ -8,6 +8,7 @@ import android.text.style.UnderlineSpan;
 
 import dk.nodes.utils.NLog;
 
+@Deprecated
 public class NSpannableHelper {
 
 	private static String TAG = NSpannableHelper.class.getName();

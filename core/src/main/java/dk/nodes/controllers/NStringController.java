@@ -11,6 +11,7 @@ import dk.nodes.utils.NLog;
 /**
  * @author Casper Rasmussen - 2012
  */
+@Deprecated
 public class NStringController {
 	/**
 	 * Use this method to check if string is not null and length is bigger than minimumsize 

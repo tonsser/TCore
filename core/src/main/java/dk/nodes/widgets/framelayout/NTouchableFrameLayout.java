@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
+@Deprecated
 public class NTouchableFrameLayout extends FrameLayout {
 
 	private long lastTouchedTimeStamp;

@@ -8,6 +8,7 @@ import android.widget.ListView;
 /**
  * Created by Thomas on 28-11-2014.
  */
+@Deprecated
 public class NListView extends ListView {
     private int mPosition;
     private boolean scrollEnabled = true;

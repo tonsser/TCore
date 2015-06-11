@@ -19,6 +19,7 @@ package dk.nodes.webservice.parser;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 
+@Deprecated
 class NJSON {
     /**
      * Returns the input if it is a JSON-permissible value; throws otherwise.

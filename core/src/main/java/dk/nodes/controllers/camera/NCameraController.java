@@ -26,6 +26,7 @@ import java.util.List;
 import dk.nodes.controllers.NScreenParameters;
 import dk.nodes.utils.NLog;
 
+@Deprecated
 public class NCameraController {
 	private static final String logtag = NCameraController.class.getSimpleName();
 	private static final String TAG = NCameraController.class.getSimpleName();

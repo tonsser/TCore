@@ -9,6 +9,7 @@ import android.view.SurfaceView;
 import dk.nodes.controllers.NScreenParameters;
 import dk.nodes.utils.NToast;
 
+@Deprecated
 public class NCameraView extends SurfaceView implements SurfaceHolder.Callback {
 	private static final String TAG = NCameraView.class.getSimpleName();
 

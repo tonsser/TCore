@@ -83,6 +83,7 @@ import dk.nodes.utils.NLog;
  * <i>Effective Java</i> Item 17, "Design and Document or inheritance or else
  * prohibit it" for further information.
  */
+@Deprecated
 public class NJSONObject extends JSONObject {
 
 	private static final Double NEGATIVE_ZERO = -0d;

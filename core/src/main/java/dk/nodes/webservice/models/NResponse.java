@@ -7,6 +7,7 @@ import dk.nodes.webservice.parser.NJSONObject;
  * @author Casper Rasmussen 2012
  */
 
+@Deprecated
 public class NResponse {
 
 	private NJSONObject jsonReturn;

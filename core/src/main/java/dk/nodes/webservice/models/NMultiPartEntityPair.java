@@ -2,6 +2,7 @@ package dk.nodes.webservice.models;
 
 import org.apache.http.entity.mime.content.ByteArrayBody;
 
+@Deprecated
 public class NMultiPartEntityPair {
 
 	private String name;

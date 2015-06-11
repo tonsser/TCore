@@ -61,6 +61,7 @@ import org.json.JSONException;
  * Item 17, "Design and Document or inheritance or else prohibit it" for further
  * information.
  */
+@Deprecated
 public class JSONTokener {
 
     /** The input JSON. */

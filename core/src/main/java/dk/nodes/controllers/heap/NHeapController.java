@@ -17,6 +17,7 @@ import dk.nodes.controllers.NScreenParameters;
 import dk.nodes.controllers.heap.NLowHeapASync.LowHeapAsyncListener;
 import dk.nodes.utils.NLog;
 
+@Deprecated
 public class NHeapController {
 	private static String TAG = NHeapController.class.getName();
 	

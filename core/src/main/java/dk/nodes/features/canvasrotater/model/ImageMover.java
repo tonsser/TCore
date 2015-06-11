@@ -16,6 +16,7 @@ import android.view.View;
 import dk.nodes.features.canvasrotater.lib.MoveGestureDetector;
 import dk.nodes.features.canvasrotater.lib.RotateGestureDetector;
 
+@Deprecated
 public class ImageMover extends View {
 	
 	public static float				SKEW_FACTOR			= 0.05f;

@@ -4,6 +4,7 @@ package dk.nodes.controllers.heap;
  */
 import android.os.AsyncTask;
 
+@Deprecated
 public class NLowHeapASync extends AsyncTask<String, Void, Boolean> {
 
 	private int coolDownMs;

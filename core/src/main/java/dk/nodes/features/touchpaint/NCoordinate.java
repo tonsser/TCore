@@ -1,5 +1,6 @@
 package dk.nodes.features.touchpaint;
 
+@Deprecated
 public class NCoordinate {
 	public float x;
 	public float y;

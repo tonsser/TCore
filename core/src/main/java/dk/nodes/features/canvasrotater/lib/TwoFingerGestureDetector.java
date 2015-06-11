@@ -9,6 +9,7 @@ import android.view.ViewConfiguration;
 /**
  * @author Almer Thie (code.almeros.com)
  */
+@Deprecated
 public abstract class TwoFingerGestureDetector extends BaseGestureDetector {
 
     private final float mEdgeSlop;

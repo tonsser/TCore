@@ -1,5 +1,6 @@
 package dk.nodes.webservice.models;
 
+@Deprecated
 public interface NApiAsyncListener {
 	public void onSuccess(int code);
 	public void onConnectionError(int code);

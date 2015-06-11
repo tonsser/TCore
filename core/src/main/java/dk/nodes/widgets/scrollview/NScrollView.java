@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 
+@Deprecated
 public class NScrollView extends ScrollView {
 
 public NScrollView(Context context, AttributeSet attrs, int defStyle) {

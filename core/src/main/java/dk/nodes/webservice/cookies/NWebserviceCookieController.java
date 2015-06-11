@@ -8,6 +8,7 @@ import org.apache.http.cookie.Cookie;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class NWebserviceCookieController {
 	
 	public static ArrayList<NWebserviceCookieClass> setCookieList(List<Cookie> cookieListInput){

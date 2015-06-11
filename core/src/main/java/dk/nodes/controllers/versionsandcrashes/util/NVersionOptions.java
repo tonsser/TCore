@@ -4,7 +4,7 @@ import android.graphics.Typeface;
 
 import dk.nodes.ncore.R;
 
-public class NVersionOtions {
+public class NVersionOptions {
 
 	//Fonts
 	private Typeface headerFont;
@@ -31,7 +31,7 @@ public class NVersionOtions {
 	//Alerts
 	private NVersionAlertOptions mNVersionAlertOptions;
 	
-	public NVersionOtions(){
+	public NVersionOptions(){
 	}
 	
 	public void setStrings(String updateHeader, String updateMessage, String updateMessageForced, String updateGoToStoreBtn,

@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import dk.nodes.utils.NLog;
 
+@Deprecated
 public class NTwitter {
 
 	private static String TAG = NTwitter.class.getSimpleName();

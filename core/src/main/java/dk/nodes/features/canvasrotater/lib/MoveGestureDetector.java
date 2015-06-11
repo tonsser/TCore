@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 /**
  * @author Almer Thie (code.almeros.com)
  */
+@Deprecated
 public class MoveGestureDetector extends BaseGestureDetector {
 	
 	/**

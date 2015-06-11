@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 
+@Deprecated
 public class NProgressMultipartEntity extends MultipartEntity {
 	
 	private final NProgressListener listener;

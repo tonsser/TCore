@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 /**
  * @author Almer Thie (code.almeros.com)
  */
+@Deprecated
 public abstract class BaseGestureDetector {
     protected final Context mContext;
     protected boolean mGestureInProgress;

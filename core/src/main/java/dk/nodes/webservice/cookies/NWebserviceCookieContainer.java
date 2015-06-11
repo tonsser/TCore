@@ -5,6 +5,7 @@ package dk.nodes.webservice.cookies;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@Deprecated
 public class NWebserviceCookieContainer implements Serializable {
 
 	private static final long serialVersionUID = 1L; // Version 1

@@ -7,6 +7,7 @@ import android.content.Intent;
 
 import dk.nodes.utils.NLog;
 
+@Deprecated
 public class NServiceController {
 
 	public static void startServiceIfNotRunning(Context mContext,Intent mIntent,String serviceClassName){

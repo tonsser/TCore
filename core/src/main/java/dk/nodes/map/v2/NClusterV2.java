@@ -20,6 +20,7 @@ import dk.nodes.map.v2.model.NMarkerList;
 import dk.nodes.map.v2.model.NMarkerV2;
 import dk.nodes.utils.NLog;
 
+@Deprecated
 public class NClusterV2 {
 
 	private NMarkerList mMarkerList = new NMarkerList();

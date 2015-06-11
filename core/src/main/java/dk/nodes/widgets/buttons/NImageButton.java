@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import dk.nodes.utils.math.NMath;
 
+@Deprecated
 public class NImageButton extends ImageButton {
 
 	private ImageButton mImageButton;

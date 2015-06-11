@@ -5,6 +5,7 @@ import android.os.StatFs;
 
 import dk.nodes.utils.NLog;
 
+@Deprecated
 public class NMemoryController {
 
 

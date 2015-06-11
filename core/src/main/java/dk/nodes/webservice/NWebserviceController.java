@@ -72,6 +72,8 @@ import dk.nodes.webservice.models.NResponse;
 import dk.nodes.webservice.parser.NJSONArray;
 import dk.nodes.webservice.parser.NJSONObject;
 
+// use Retrofit!
+@Deprecated
 public class NWebserviceController {
 	public boolean ACCEPT_JSON = false;
 	public boolean ACCEPT_GZIP = false;

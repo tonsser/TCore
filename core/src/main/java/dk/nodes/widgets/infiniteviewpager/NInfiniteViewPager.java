@@ -21,6 +21,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.LinkedList;
 
+@Deprecated
 public class NInfiniteViewPager extends ViewPager {
 
 	private final boolean ENABLED = true;
