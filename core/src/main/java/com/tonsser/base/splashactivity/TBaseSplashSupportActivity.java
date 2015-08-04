@@ -61,20 +61,9 @@ public abstract class TBaseSplashSupportActivity extends TBaseFragmentActivity {
             TLog.d("WEBSERVICE_URL", TBaseApplication.getInstance().WEBSERVICE_URL);
             TLog.d("WEBSERVICE_URL_DEBUG", TBaseApplication.getInstance().WEBSERVICE_URL_DEBUG);
             TLog.d("WEBSERVICE_URL_LIVE", TBaseApplication.getInstance().WEBSERVICE_URL_LIVE);
-            TLog.d("WEBSERVICE_TRANSLATION_URL", TBaseApplication.getInstance().WEBSERVICE_TRANSLATION_URL);
         } else {
             splashOfficecloudTv.setVisibility(View.GONE);
         }
-        String keyBuilder = "";
-        if (TBaseApplication.getInstance().GOOGLE_ANALYTICS_API == null) {
-            if (TBaseApplication.getInstance().GOOGLE_ANALYTICS_API == null)
-                keyBuilder += " FLURRY_API GOOGLE_ANALYTICS_API ";
-        }
-
-        if (keyBuilder.length() == 0)
-            splashKeyTv.setVisibility(View.GONE);
-        else
-            splashKeyTv.setVisibility(View.VISIBLE);
     }
 
     @Override

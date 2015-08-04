@@ -43,6 +43,9 @@ public class ScreenParameters {
     public static final int LARGE_SCREEN = 3;
     public static final int X_LARGE_SCREEN = 4;
 
+    public static void setScreenParameters(Context mContext) {
+        setScreenParameters(mContext, false, false, false);
+    }
     /**
      * Use this method to calculate all screenparameters, and set initialize the public static values
      * Run this in Application onCreate()
