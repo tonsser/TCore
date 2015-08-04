@@ -114,18 +114,16 @@ public class NAutoResizeTextView extends TextView {
         mPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, mid, resources.getDisplayMetrics()));
         float textWidth = mPaint.measureText(text);
 
-        if (SPEW) Log.d(TAG, "low=" + low + " high=" + high + " mid=" + mid + " target=" + targetWidth + " width=" + textWidth);
+        if (SPEW)
+            Log.d(TAG, "low=" + low + " high=" + high + " mid=" + mid + " target=" + targetWidth + " width=" + textWidth);
 
         if ((high - low) < mPrecision) {
             return low;
-        }
-        else if (textWidth > targetWidth) {
+        } else if (textWidth > targetWidth) {
             return getTextSize(resources, text, targetWidth, low, mid);
-        }
-        else if (textWidth < targetWidth) {
+        } else if (textWidth < targetWidth) {
             return getTextSize(resources, text, targetWidth, mid, high);
-        }
-        else {
+        } else {
             return mid;
         }
     }
@@ -137,7 +135,7 @@ public class NAutoResizeTextView extends TextView {
     }
 
     @Override
-    protected void onSizeChanged (int w, int h, int oldw, int oldh) {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (w != oldw) {
             refitText(getText().toString(), w);
@@ -145,8 +143,7 @@ public class NAutoResizeTextView extends TextView {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
         refitText(getText().toString(), parentWidth);

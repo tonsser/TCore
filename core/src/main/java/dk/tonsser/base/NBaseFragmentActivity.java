@@ -13,163 +13,163 @@ import android.view.KeyEvent;
 
 import java.util.ArrayList;
 
-import dk.tonsser.utils.NLog;
 import dk.tonsser.utils.NBuild;
+import dk.tonsser.utils.NLog;
 
 public abstract class NBaseFragmentActivity extends FragmentActivity {
 
-	private String TAG = NBaseFragmentActivity.class.getName();
-	private BroadcastReceiver finishReciever;
-	public Activity mActivity;
-	private ArrayList<BroadcastReceiver> finishExtraReciever = new ArrayList<BroadcastReceiver>();
-	private boolean isResumed;
+    private String TAG = NBaseFragmentActivity.class.getName();
+    private BroadcastReceiver finishReciever;
+    public Activity mActivity;
+    private ArrayList<BroadcastReceiver> finishExtraReciever = new ArrayList<BroadcastReceiver>();
+    private boolean isResumed;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);  	
-		mActivity = this;
-		registerFinishBroadCastReciever();
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mActivity = this;
+        registerFinishBroadCastReciever();
+    }
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		isResumed = false;
-	}
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isResumed = false;
+    }
 
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		isResumed = true;
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isResumed = true;
+    }
 
-	public boolean isResumedOnly(){
-		return isResumed;
-	}
+    public boolean isResumedOnly() {
+        return isResumed;
+    }
 
-	@Override
-	protected void onNewIntent(Intent intent) {
-		super.onNewIntent(intent);
-		setIntent(intent);
-	}
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
 
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-	}
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 
-	@Override
-	protected void onStart() {
-		super.onStart();
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-	}
-	@Override
-	protected void onStop() {
-		super.onStop();
-	}
+    }
 
-	private void registerFinishBroadCastReciever(){
-		IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction(NBuild.getPackageName(getBaseContext())+".finish_all");  
-		finishReciever = new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context mContext, Intent mIntent) {
-				finish();
-			}
-		};			
-		try {
-			LocalBroadcastManager.getInstance(this).registerReceiver(finishReciever, intentFilter);
-		} catch (Exception e) {
-			NLog.e(TAG + " registerFinishBroadCastReciever", e);
-		}	
-	}
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
-	protected void registerExtraFinishBroadCastReciever(String action){
-		IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction(action); 
-		finishExtraReciever.add(new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context mContext, Intent mIntent) {
-				finish();
-			}
+    private void registerFinishBroadCastReciever() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(NBuild.getPackageName(getBaseContext()) + ".finish_all");
+        finishReciever = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context mContext, Intent mIntent) {
+                finish();
+            }
+        };
+        try {
+            LocalBroadcastManager.getInstance(this).registerReceiver(finishReciever, intentFilter);
+        } catch (Exception e) {
+            NLog.e(TAG + " registerFinishBroadCastReciever", e);
+        }
+    }
 
-		});
-		try {
-			LocalBroadcastManager.getInstance(this).registerReceiver(finishExtraReciever.get(finishExtraReciever.size()-1), intentFilter);
-		} catch (Exception e) {
-			NLog.e(TAG +" registerExtraFinishBroadCastReciever", e);
-		}	
-	}
+    protected void registerExtraFinishBroadCastReciever(String action) {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(action);
+        finishExtraReciever.add(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context mContext, Intent mIntent) {
+                finish();
+            }
 
-	public void onDestroy(){
-		super.onDestroy(); 
-		if(finishReciever!= null)
-			LocalBroadcastManager.getInstance(this).unregisterReceiver(finishReciever);
-	}
-	
+        });
+        try {
+            LocalBroadcastManager.getInstance(this).registerReceiver(finishExtraReciever.get(finishExtraReciever.size() - 1), intentFilter);
+        } catch (Exception e) {
+            NLog.e(TAG + " registerExtraFinishBroadCastReciever", e);
+        }
+    }
 
-	public void broadcastFinishAll(){
-		Intent broadcastIntent = new Intent();
-		broadcastIntent.setAction(NBuild.getPackageName(getBaseContext())+".finish_all"); 
-		LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
-	}
+    public void onDestroy() {
+        super.onDestroy();
+        if (finishReciever != null)
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(finishReciever);
+    }
 
-	public void broadcastAction(String action){
-		Intent broadcastIntent = new Intent();
-		broadcastIntent.setAction(action); 
-		LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
-	}
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_MENU) {
-			onSettingsPressed();
-			return true;
-		}
-		else if (keyCode == KeyEvent.KEYCODE_SEARCH) {
-			onSearchPressed();
-			return true;
-		}
-		else if (keyCode == KeyEvent.KEYCODE_HOME) {
-			onHomePressed();
-			return true;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
-	/**
-	 * Called when the physical key search is pressed, this is button is only available on some android models.
-	 */
-	public void onSearchPressed() {
-	}
+    public void broadcastFinishAll() {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction(NBuild.getPackageName(getBaseContext()) + ".finish_all");
+        LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
+    }
 
-	/**
-	 * Called when the physical key home is pressed. Overriding this method and do nothing, 
-	 * will NOT prevent the phone from leaving app. 
-	 */
-	public void onHomePressed(){
-	}
+    public void broadcastAction(String action) {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction(action);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
+    }
 
-	/**
-	 * Called when the physical key settings is pressed, this is button is only available on some android models.
-	 */
-	public void onSettingsPressed(){
-	}
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            onSettingsPressed();
+            return true;
+        } else if (keyCode == KeyEvent.KEYCODE_SEARCH) {
+            onSearchPressed();
+            return true;
+        } else if (keyCode == KeyEvent.KEYCODE_HOME) {
+            onHomePressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
-	/**
-	 * Called when the physical key back is pressed
-	 */
-	@Override
-	public void onBackPressed(){
-		super.onBackPressed();
-	}
+    /**
+     * Called when the physical key search is pressed, this is button is only available on some android models.
+     */
+    public void onSearchPressed() {
+    }
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		try {
-			super.onSaveInstanceState(outState);
-		} catch (Exception e) {
-			NLog.e(TAG +" onSaveInstanceState", e);
-		}
-	}
+    /**
+     * Called when the physical key home is pressed. Overriding this method and do nothing,
+     * will NOT prevent the phone from leaving app.
+     */
+    public void onHomePressed() {
+    }
+
+    /**
+     * Called when the physical key settings is pressed, this is button is only available on some android models.
+     */
+    public void onSettingsPressed() {
+    }
+
+    /**
+     * Called when the physical key back is pressed
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        try {
+            super.onSaveInstanceState(outState);
+        } catch (Exception e) {
+            NLog.e(TAG + " onSaveInstanceState", e);
+        }
+    }
 }

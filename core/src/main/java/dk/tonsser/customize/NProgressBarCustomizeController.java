@@ -17,7 +17,7 @@ public class NProgressBarCustomizeController {
                     .setColorFilter(mColor, android.graphics.PorterDuff.Mode.MULTIPLY);
         } catch (NullPointerException e) {
             /*On SDK 22 (Lollipop 5.1), a weird crash can happen.
-				Caused by: java.lang.NullPointerException: Attempt to write to field 'java.util.ArrayList android.animation.AnimatorSet$Node.nodeDependents' on a null object reference
+                Caused by: java.lang.NullPointerException: Attempt to write to field 'java.util.ArrayList android.animation.AnimatorSet$Node.nodeDependents' on a null object reference
 		        at android.animation.AnimatorSet.clone(AnimatorSet.java:699)
 			*/
             e.printStackTrace();

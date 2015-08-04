@@ -1,9 +1,9 @@
 package dk.tonsser.utils.math;
+
 /**
  * @author Casper Rasmussen 2012
  */
-public class NButterworthLowPassFilter
-{
+public class NButterworthLowPassFilter {
     private int LowPassOrder = 4;
 
     private double[] inputValueModifier;
@@ -12,8 +12,7 @@ public class NButterworthLowPassFilter
     private double[] outputValue;
     private int valuePosition;
 
-    public NButterworthLowPassFilter()
-    {
+    public NButterworthLowPassFilter() {
         inputValueModifier = new double[LowPassOrder];
         inputValueModifier[0] = 0.098531160923927;
         inputValueModifier[1] = 0.295593482771781;
@@ -27,25 +26,20 @@ public class NButterworthLowPassFilter
         outputValueModifier[3] = -0.0562972364918427;
     }
 
-    public double Filter(double inputValue) throws Exception
-    {
-        if (this.inputValue == null && this.outputValue == null)
-        {
+    public double Filter(double inputValue) throws Exception {
+        if (this.inputValue == null && this.outputValue == null) {
             this.inputValue = new double[LowPassOrder];
             this.outputValue = new double[LowPassOrder];
 
             valuePosition = -1;
 
-            for (int i=0; i < LowPassOrder; i++)
-            {
+            for (int i = 0; i < LowPassOrder; i++) {
                 this.inputValue[i] = inputValue;
                 this.outputValue[i] = inputValue;
             }
 
             return inputValue;
-        }
-        else if (this.inputValue != null && this.outputValue != null)
-        {
+        } else if (this.inputValue != null && this.outputValue != null) {
             valuePosition = IncrementLowOrderPosition(valuePosition);
 
             this.inputValue[valuePosition] = inputValue;
@@ -53,35 +47,29 @@ public class NButterworthLowPassFilter
 
             int j = valuePosition;
 
-            for (int i = 0; i < LowPassOrder; i++)
-            {
+            for (int i = 0; i < LowPassOrder; i++) {
                 this.outputValue[valuePosition] += inputValueModifier[i] * this.inputValue[j] -
-                    outputValueModifier[i] * this.outputValue[j];
+                        outputValueModifier[i] * this.outputValue[j];
 
                 j = DecrementLowOrderPosition(j);
             }
-            if(0<this.outputValue[valuePosition])
-            	return this.outputValue[valuePosition];
+            if (0 < this.outputValue[valuePosition])
+                return this.outputValue[valuePosition];
             else
-            	return 0;
-        }
-        else
-        {
+                return 0;
+        } else {
             throw new Exception("Both inputValue and outputValue should either be null or not null.  This should never be thrown.");
         }
     }
 
-    private int DecrementLowOrderPosition(int j)
-    {
-        if (--j < 0)
-        {
+    private int DecrementLowOrderPosition(int j) {
+        if (--j < 0) {
             j += LowPassOrder;
         }
         return j;
     }
 
-    private int IncrementLowOrderPosition(int position)
-    {
+    private int IncrementLowOrderPosition(int position) {
         return ((position + 1) % LowPassOrder);
     }
 

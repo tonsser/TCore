@@ -11,7 +11,7 @@ import dk.tonsser.notifications.builder.prejellybeans.NPreJellyBeansNotification
 
 public class NNotificationAlarmReceiver extends BroadcastReceiver {
 
-	public void onReceive(Context mContext, Intent intent) {
-		new NPreJellyBeansNotificationBuilder().execute(mContext,"Notification","message",0,null);
-	}
+    public void onReceive(Context mContext, Intent intent) {
+        new NPreJellyBeansNotificationBuilder().execute(mContext, "Notification", "message", 0, null);
+    }
 } 

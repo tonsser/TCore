@@ -4,7 +4,6 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -35,7 +34,7 @@ public class NSSLSocketFactory extends SSLSocketFactory {
             }
         };
 
-        sslContext.init(null, new TrustManager[] { tm }, null);
+        sslContext.init(null, new TrustManager[]{tm}, null);
     }
 
     @Override

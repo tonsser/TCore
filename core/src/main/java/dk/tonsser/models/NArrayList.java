@@ -8,101 +8,107 @@ import dk.tonsser.utils.NUtils;
 import dk.tonsser.utils.math.NUnits;
 
 public class NArrayList<T> extends ArrayList<T> implements Serializable {
-	private long lastLoadedUnix;
-	private long cacheTime = 5 * NUnits.MIN_IN_MS;
-	private String lastModified;
-	
-	public String getLastModified(){
-		return lastModified;
-	}
-	
-	public void resetLastLoadedUnix() {
-		lastLoadedUnix = 0;
-	}
-	/**
-	 * Set the cache time, used for isOutdated
-	 * @param cacheTime
-	 */
-	public void setCacheTime(long cacheTime){
-		this.cacheTime = cacheTime;
-	}
-	
-	/**
-	 * Get the cache time, used for isOutdated
-	 * @return
-	 */
-	public long getCacheTime(){
-		return cacheTime;
-	}
-	
-	/**
-	 * Will return if the cache time is exceeded or not
-	 * @return
-	 */
-	public boolean isOutdated(){
-		return NUtils.isOutdated(cacheTime, lastLoadedUnix);
-	}
+    private long lastLoadedUnix;
+    private long cacheTime = 5 * NUnits.MIN_IN_MS;
+    private String lastModified;
 
-	/**
-	 * Reset the cache time
-	 */
-	public void setLastLoadedUnix(){
-		lastLoadedUnix = System.currentTimeMillis();
-	}
+    public String getLastModified() {
+        return lastModified;
+    }
 
-	/**
-	 *  Resetting the cache time and super.add
-	 */
-	@Override
-	public void add(int index, T object) {
-		setLastLoadedUnix();
-		super.add(index, object);
-	}
+    public void resetLastLoadedUnix() {
+        lastLoadedUnix = 0;
+    }
 
-	@Override
-	public boolean add(T object) {
-		setLastLoadedUnix();
-		return super.add(object);
-	}
+    /**
+     * Set the cache time, used for isOutdated
+     *
+     * @param cacheTime
+     */
+    public void setCacheTime(long cacheTime) {
+        this.cacheTime = cacheTime;
+    }
 
-	/**
-	 * Resetting the cache time and super.addAll
-	 */
-	@Override
-	public boolean addAll(Collection<? extends T> collection) {
-		setLastLoadedUnix();
-		return super.addAll(collection);
-	}
+    /**
+     * Get the cache time, used for isOutdated
+     *
+     * @return
+     */
+    public long getCacheTime() {
+        return cacheTime;
+    }
 
-	/**
-	 * Resetting the cache time and super.addAll
-	 */
-	@Override
-	public boolean addAll(int index, Collection<? extends T> collection) {
-		setLastLoadedUnix();
-		return super.addAll(index, collection);
-	}
+    /**
+     * Will return if the cache time is exceeded or not
+     *
+     * @return
+     */
+    public boolean isOutdated() {
+        return NUtils.isOutdated(cacheTime, lastLoadedUnix);
+    }
 
-	@Override
-	public void clear() {
-		super.clear();
-		lastLoadedUnix = 0;
-	}
-	/**
-	 * Clearing list and setting it
-	 * @param collection
-	 */
-	public void setList(Collection<? extends T> collection){
-		clear();
-		addAll(collection);
-	}
-	
-	public void setList(Collection<? extends T> collection, String lastModified){
-		setList(collection);
-		this.lastModified = lastModified;
-	}
-	
-	public boolean doesIndexExist(int index){
-		return (index < size() && index >= 0) ? true : false;
-	}
+    /**
+     * Reset the cache time
+     */
+    public void setLastLoadedUnix() {
+        lastLoadedUnix = System.currentTimeMillis();
+    }
+
+    /**
+     * Resetting the cache time and super.add
+     */
+    @Override
+    public void add(int index, T object) {
+        setLastLoadedUnix();
+        super.add(index, object);
+    }
+
+    @Override
+    public boolean add(T object) {
+        setLastLoadedUnix();
+        return super.add(object);
+    }
+
+    /**
+     * Resetting the cache time and super.addAll
+     */
+    @Override
+    public boolean addAll(Collection<? extends T> collection) {
+        setLastLoadedUnix();
+        return super.addAll(collection);
+    }
+
+    /**
+     * Resetting the cache time and super.addAll
+     */
+    @Override
+    public boolean addAll(int index, Collection<? extends T> collection) {
+        setLastLoadedUnix();
+        return super.addAll(index, collection);
+    }
+
+    @Override
+    public void clear() {
+        super.clear();
+        lastLoadedUnix = 0;
+    }
+
+    /**
+     * Clearing list and setting it
+     *
+     * @param collection
+     */
+    public void setList(Collection<? extends T> collection) {
+        clear();
+        addAll(collection);
+    }
+
+    public void setList(Collection<? extends T> collection, String lastModified) {
+        setList(collection);
+        this.lastModified = lastModified;
+    }
+
+    public boolean doesIndexExist(int index) {
+        return (index < size() && index >= 0) ? true : false;
+    }
 }
