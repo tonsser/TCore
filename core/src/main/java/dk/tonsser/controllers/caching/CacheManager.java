@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 import dk.tonsser.filehandler.NFileHandler;
-import dk.tonsser.utils.NLog;
+import dk.tonsser.utils.TLog;
 
 public class CacheManager<T> {
 
@@ -25,7 +25,7 @@ public class CacheManager<T> {
 
     public void saveData(T t) {
         if (mContext == null) {
-            NLog.e("CacheManager", "saveData: Context was null");
+            TLog.e("CacheManager", "saveData: Context was null");
             return;
         }
 
@@ -47,7 +47,7 @@ public class CacheManager<T> {
 
     public void loadData(CacheCallback<T> callback) {
         if (mContext == null) {
-            NLog.e("CacheManager", "loadData: Context was null");
+            TLog.e("CacheManager", "loadData: Context was null");
             return;
         }
 
@@ -58,20 +58,20 @@ public class CacheManager<T> {
         try {
             t = (T) fileHandler.loadData();
         } catch (Exception e) {
-            NLog.e("CacheManager", "Failed casting to generic type: " + t.getClass().toString());
+            TLog.e("CacheManager", "Failed casting to generic type: " + t.getClass().toString());
             callback.onNotFound();
         }
 
         CacheState cacheState = mCacheStates.get(mKey);
 
         if (t == null) {
-            NLog.i("CacheManager", "Cache is not found for key: " + mKey);
+            TLog.i("CacheManager", "Cache is not found for key: " + mKey);
             callback.onNotFound();
         } else if (cacheState != null && cacheState.isExpired(mCacheTime)) {
-            NLog.i("CacheManager", "Cache is expired for key: " + mKey);
+            TLog.i("CacheManager", "Cache is expired for key: " + mKey);
             callback.onExpired(t);
         } else {
-            NLog.i("CacheManager", "Cache is valid for key: " + mKey);
+            TLog.i("CacheManager", "Cache is valid for key: " + mKey);
             callback.onValid(t);
         }
     }

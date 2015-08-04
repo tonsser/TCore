@@ -10,8 +10,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import dk.tonsser.filehandler.tasks.NFilehandlerSaveTask;
-import dk.tonsser.utils.NLog;
+import dk.tonsser.filehandler.tasks.TFilehandlerSaveTask;
+import dk.tonsser.utils.TLog;
 
 public class NFileHandler {
 
@@ -60,7 +60,7 @@ public class NFileHandler {
      */
     public void saveDataAsync(Object data) {
         if (instance != null)
-            new NFilehandlerSaveTask(instance, data).execute();
+            new TFilehandlerSaveTask(instance, data).execute();
     }
 
     /**
@@ -76,7 +76,7 @@ public class NFileHandler {
 
     public void saveData(Object data) {
         if (data == null || mContext == null || fileName == null) {
-            NLog.e(TAG + " saveData", "data || context || fileName is null -  returning....");
+            TLog.e(TAG + " saveData", "data || context || fileName is null -  returning....");
             return;
         }
         try {
@@ -84,9 +84,9 @@ public class NFileHandler {
             ObjectOutputStream os = new ObjectOutputStream(fos);
             os.writeObject(data);
             os.close();
-            NLog.d("NFileHandler", "File Saved [" + fileName + "]");
+            TLog.d("NFileHandler", "File Saved [" + fileName + "]");
         } catch (Exception e) {
-            NLog.e("NFileHandler saveData", e);
+            TLog.e("NFileHandler saveData", e);
         }
     }
 
@@ -96,10 +96,10 @@ public class NFileHandler {
             ObjectInputStream is = new ObjectInputStream(fis);
             Object output = is.readObject();
             is.close();
-            NLog.d("NFileHandler", "File Loaded [" + fileName + "]");
+            TLog.d("NFileHandler", "File Loaded [" + fileName + "]");
             return output;
         } catch (Exception e) {
-            NLog.e("NFileHandler loadData", e);
+            TLog.e("NFileHandler loadData", e);
             return null;
         }
     }

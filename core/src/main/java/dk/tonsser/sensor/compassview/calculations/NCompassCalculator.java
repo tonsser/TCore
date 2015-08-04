@@ -2,7 +2,7 @@ package dk.tonsser.sensor.compassview.calculations;
 
 import android.content.res.Configuration;
 
-import dk.tonsser.controllers.NScreenParameters;
+import dk.tonsser.controllers.ScreenParameters;
 
 public class NCompassCalculator {
     private static final String TAG = NCompassCalculator.class.getName().toString();
@@ -70,7 +70,7 @@ public class NCompassCalculator {
         m.set(r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8]);
         m.transpose();
 
-        boolean portrait = (NScreenParameters.orientation == Configuration.ORIENTATION_PORTRAIT);
+        boolean portrait = (ScreenParameters.orientation == Configuration.ORIENTATION_PORTRAIT);
         if (portrait) {
             looking.set(0, 1, 0);
         } else {

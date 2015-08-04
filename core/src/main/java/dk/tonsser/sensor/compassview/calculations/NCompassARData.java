@@ -2,7 +2,7 @@ package dk.tonsser.sensor.compassview.calculations;
 
 import android.location.Location;
 
-import dk.tonsser.utils.NLog;
+import dk.tonsser.utils.TLog;
 
 public abstract class NCompassARData {
     private static final String TAG = NCompassARData.class.getName().toString();
@@ -38,7 +38,7 @@ public abstract class NCompassARData {
     public static void setCurrentLocation(Location currentLocation) {
         if (currentLocation == null) throw new NullPointerException();
 
-        NLog.d(TAG, "current location. location=" + currentLocation.toString());
+        TLog.d(TAG, "current location. location=" + currentLocation.toString());
         synchronized (currentLocation) {
             NCompassARData.currentLocation = currentLocation;
         }
@@ -96,7 +96,7 @@ public abstract class NCompassARData {
             az = NCompassCalculator.getAzimuth();
         }
         setAzimuth(az);
-        //NLog.v(TAG, "Azimuth: " + getAzimuth());
+        //TLog.v(TAG, "Azimuth: " + getAzimuth());
     }
 
     /**

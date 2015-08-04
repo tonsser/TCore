@@ -33,7 +33,7 @@ import java.util.TimerTask;
 
 import dk.tonsser.sensor.compassview.calculations.NCompassARData;
 import dk.tonsser.sensor.compassview.calculations.NCompassMatrix;
-import dk.tonsser.utils.NLog;
+import dk.tonsser.utils.TLog;
 
 public class NCompassView extends View implements SensorEventListener, LocationListener {
 
@@ -201,7 +201,7 @@ public class NCompassView extends View implements SensorEventListener, LocationL
             isTablet = r % 2 == 0;
         }
 
-        NLog.i(TAG, "Portrait: " + portrait + ", rot: " + r + ", isTablet: " + isTablet);
+        TLog.i(TAG, "Portrait: " + portrait + ", rot: " + r + ", isTablet: " + isTablet);
     }
 
     private void initAR() {
@@ -287,10 +287,10 @@ public class NCompassView extends View implements SensorEventListener, LocationL
             sensorGyro = sensorMgr.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
             sensorMgr.registerListener(this, sensorGyro, sensorRate);
             fuseTimer.scheduleAtFixedRate(new calculateFusedOrientationTask(), 1000, TIME_CONSTANT); // use the gyro
-            NLog.d(TAG, "initListeners() - " + "Gyro found");
+            TLog.d(TAG, "initListeners() - " + "Gyro found");
         } else {
             fuseTimer.scheduleAtFixedRate(new calculateUnfusedOrientationTask(), 1000, TIME_CONSTANT); // don't use the gyro
-            NLog.d(TAG, "initListeners() - " + "No gyro found");
+            TLog.d(TAG, "initListeners() - " + "No gyro found");
         }
 
         locationMgr = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
@@ -333,7 +333,7 @@ public class NCompassView extends View implements SensorEventListener, LocationL
     }
 
     private void deInitListners() {
-        NLog.d(TAG, "deInitListeners()");
+        TLog.d(TAG, "deInitListeners()");
         fuseTimer.cancel();
 
         try {
@@ -702,7 +702,7 @@ public class NCompassView extends View implements SensorEventListener, LocationL
         if (sensor == null) throw new NullPointerException();
 
         if (sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD && accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE) {
-            NLog.w(TAG, "Compass data unreliable");
+            TLog.w(TAG, "Compass data unreliable");
         }
     }
 
