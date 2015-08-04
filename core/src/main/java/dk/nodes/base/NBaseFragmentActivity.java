@@ -13,7 +13,6 @@ import android.view.KeyEvent;
 
 import java.util.ArrayList;
 
-import dk.nodes.controllers.feedback.NFeedback;
 import dk.nodes.utils.NBuild;
 import dk.nodes.utils.NLog;
 
@@ -23,7 +22,6 @@ public abstract class NBaseFragmentActivity extends FragmentActivity {
 	private BroadcastReceiver finishReciever;
 	public Activity mActivity;
 	private ArrayList<BroadcastReceiver> finishExtraReciever = new ArrayList<BroadcastReceiver>();
-	protected boolean SHAKE_FEEDBACK_ENABLED = true;
 	private boolean isResumed;
 
 	@Override
@@ -36,8 +34,6 @@ public abstract class NBaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-
-		NFeedback.getInstance().unregisterShake();
 		isResumed = false;
 	}
 
@@ -45,9 +41,6 @@ public abstract class NBaseFragmentActivity extends FragmentActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(SHAKE_FEEDBACK_ENABLED)
-			NFeedback.getInstance().registerShakeIfSettings(this);
-		
 		isResumed = true;
 	}
 
@@ -112,15 +105,8 @@ public abstract class NBaseFragmentActivity extends FragmentActivity {
 		super.onDestroy(); 
 		if(finishReciever!= null)
 			LocalBroadcastManager.getInstance(this).unregisterReceiver(finishReciever);
-		unregisterFinishExtraRecievers();
 	}
 	
-	public void unregisterFinishExtraRecievers(){
-		for(BroadcastReceiver mBroadcastReceiver : finishExtraReciever)
-			LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
-
-		finishExtraReciever.clear();
-	}
 
 	public void broadcastFinishAll(){
 		Intent broadcastIntent = new Intent();

@@ -1,10 +1,8 @@
 package dk.nodes.controllers;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Build;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -183,39 +181,6 @@ public class NKeyboardController {
 			imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
 		} catch (Exception e) {
 			NLog.e(TAG + " hideKeyboard",e);
-		}
-	}
-
-	@SuppressWarnings("deprecation")
-	@SuppressLint("NewApi")
-	public static void setOnKeyboardListener(final Activity activity, final NKeyboardShowingListener nKeyboardShowingListener) {
-
-		isKeyboardShown = isKeyboardShowing(activity);
-		final View activityRootView = activity.findViewById(android.R.id.content);
-
-		if(nKeyboardShowingListener == null && mOnGlobalLayoutListener != null){
-			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-				activityRootView.getViewTreeObserver().removeOnGlobalLayoutListener(mOnGlobalLayoutListener);
-			else
-				activityRootView.getViewTreeObserver().removeGlobalOnLayoutListener(mOnGlobalLayoutListener);
-		}
-		else{	
-			mOnGlobalLayoutListener = new OnGlobalLayoutListener() {
-				@Override
-				public void onGlobalLayout() {
-					if (isKeyboardShowing(activity) != isKeyboardShown && nKeyboardShowingListener != null) {
-						if (isKeyboardShowing(activity)) {
-							nKeyboardShowingListener.onKeyboardShown();
-							isKeyboardShown = true;
-						} else {
-							nKeyboardShowingListener.onKeyboardHidden();
-							isKeyboardShown = false;
-						}
-					}
-				}
-			};
-
-			activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(mOnGlobalLayoutListener);
 		}
 	}
 

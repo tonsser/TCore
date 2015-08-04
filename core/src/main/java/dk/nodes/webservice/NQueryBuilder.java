@@ -1,5 +1,7 @@
 package dk.nodes.webservice;
 
+import org.json.JSONObject;
+
 import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
@@ -7,7 +9,6 @@ import java.util.Map.Entry;
 
 import dk.nodes.utils.NLog;
 import dk.nodes.utils.NUtils;
-import dk.nodes.webservice.parser.NJSONObject;
 
 /**
  * @author Casper Rasmussen - 2013
@@ -46,7 +47,7 @@ public class NQueryBuilder {
 	 * @return String
 	 * @throws Exception
 	 */
-	public static String jsonToQuery(NJSONObject inputJSON) throws Exception {
+	public static String jsonToQuery(JSONObject inputJSON) throws Exception {
 		return mapToQuery(NUtils.jsonToHashMap(inputJSON));
 	}
 	
@@ -58,7 +59,7 @@ public class NQueryBuilder {
 	 * @throws Exception
 	 */
 	public static String pairToQuery(String key, String value) throws Exception {
-		NJSONObject queryJson = new NJSONObject();
+		JSONObject queryJson = new JSONObject();
 		queryJson.put(key, value);
 		return jsonToQuery(queryJson);
 	}

@@ -6,12 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import dk.nodes.base.NBaseApplication;
-import dk.nodes.webservice.models.NResponse;
-import dk.nodes.webservice.parser.NJSONObject;
 
-/**
- * @author Casper Rasmussen - 2013
- */
 public class NLog {
 
 	private static String TEST = "test";
@@ -31,23 +26,10 @@ public class NLog {
 			return false;
 	}	
 
-	public  static void d(String tag, NJSONObject json){
-		if(NBaseApplication.getInstance() == null || NBaseApplication.getInstance().DEBUG){
-			if(json != null)
-				Log.d(tag, json.toString());
-			else
-				Log.d(tag, "Error json object is null");
-		}
-	}
 	public  static void d(String tag, String msg){
 		if(NBaseApplication.getInstance() == null || NBaseApplication.getInstance().DEBUG)
 			Log.d(tag, msg);
 	}	
-	public static void d(String tag, NResponse mNResponse){
-		if(NBaseApplication.getInstance() == null || NBaseApplication.getInstance().DEBUG)
-			Log.d(tag, "Code: " + mNResponse.getResponseCode() + " output: " + mNResponse.getResponseJson()
-					.toString());
-	}
 
 	public  static void d( String msg){
 		String tag = "null";
@@ -380,7 +362,4 @@ public class NLog {
 		NLog.d(TEST, String.valueOf(b));
 	}
 
-	public static void t(NJSONObject json){
-		NLog.d(TEST, json);
-	}
 }

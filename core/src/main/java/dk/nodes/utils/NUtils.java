@@ -9,6 +9,8 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,8 +21,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import dk.nodes.webservice.parser.NJSONObject;
 
 public class NUtils {
 	private static Timer timer;
@@ -181,7 +181,7 @@ public class NUtils {
 	 * @return HashMap<String, String>
 	 * @throws Exception
 	 */
-	public static HashMap<String, String> jsonToHashMap(NJSONObject object) throws Exception {
+	public static HashMap<String, String> jsonToHashMap(JSONObject object) throws Exception {
 		if(object==null)
 			return null;
 

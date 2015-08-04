@@ -3,7 +3,6 @@ package dk.nodes.webservice;
 import org.apache.http.HttpResponse;
 
 import dk.nodes.utils.NLog;
-import dk.nodes.webservice.models.NResponse;
 
 /**
  * @author Casper Rasmussen 2012
@@ -41,22 +40,6 @@ public class NWebserviceConstants {
 			return false;
 	}
 
-	/**
-	 * Checking if NResponse.getResponseCode is between 200 and 299 and returning true
-	 * @param response
-	 * @return boolean
-	 */
-	public static boolean isApiSuccess(NResponse response){
-		if(response == null){
-			NLog.e("isApiSuccess", "NResponse was null returning false");
-			return false;
-		}
-		if(response.getResponseCode()>=200 && response.getResponseCode() <300)
-			return true;
-		else
-			return false;
-	}
-	
 	public static boolean isResponseCoudeServerRelated(int code){
 		return (code>= 500 && code < 600) ? true:false;
 	}
