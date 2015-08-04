@@ -1,7 +1,5 @@
 package dk.tonsser.webservice;
 
-import org.apache.http.HttpResponse;
-
 import dk.tonsser.utils.TLog;
 
 /**
@@ -39,11 +37,7 @@ public class TWebserviceConstants {
     }
 
     public static boolean isResponseCoudeServerRelated(int code) {
-        return (code >= 500 && code < 600) ? true : false;
-    }
-
-    public static boolean isResponseCoudeServerRelated(HttpResponse response) {
-        return isResponseCoudeServerRelated(response.getStatusLine().getStatusCode());
+        return (code >= 500 && code < 600);
     }
 
 

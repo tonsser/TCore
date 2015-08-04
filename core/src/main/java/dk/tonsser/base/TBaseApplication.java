@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 
 import dk.tonsser.controllers.ScreenParameters;
-import dk.tonsser.controllers.heap.NHeapController;
 import dk.tonsser.filehandler.NFileHandler;
 import dk.tonsser.utils.TBuild;
 import dk.tonsser.utils.TLog;
@@ -69,7 +68,6 @@ public abstract class TBaseApplication extends Application {
     public void onCreate() {
         instance = this;
         initApplication();
-        NHeapController.logHeap();
         ScreenParameters.setScreenParameters(getBaseContext(), IS_STATUSBAR_ON, IS_TRANSULENT_STATUS_BAR, IS_TRANSULENT_NAVIGATION_BAR);
 
         if (FILE_NAME != null)

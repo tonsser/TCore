@@ -10,11 +10,9 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 
-import dk.tonsser.controllers.dialogqueuing.NDialogQueueInterface;
-import dk.tonsser.controllers.dialogqueuing.NDialogQueueListener;
 import dk.tonsser.utils.TLog;
 
-public class TBasicAlertDialog implements NDialogQueueInterface {
+public class TBasicAlertDialog {
 
     private static final String TAG = TBasicAlertDialog.class.getName();
     private Activity mActivity;
@@ -25,7 +23,6 @@ public class TBasicAlertDialog implements NDialogQueueInterface {
     private boolean cancelable = false;
     private AlertDialog alert;
     private NBasicAlertDialogListener mNBasicAlertDialogListener;
-    private NDialogQueueListener mQueueListener;
     private boolean isShowing = false;
     private String mQueueTag;
 
@@ -38,7 +35,7 @@ public class TBasicAlertDialog implements NDialogQueueInterface {
      * @param rightText
      * @param leftText
      * @param cancelable
-     * @param mOnNPickDialogListener2
+     * @param mNBasicAlertDialogListener
      */
     public TBasicAlertDialog(Activity mActivity, String title, String message, String leftText, String rightText,
                              boolean cancelable, NBasicAlertDialogListener mNBasicAlertDialogListener) {
@@ -101,9 +98,6 @@ public class TBasicAlertDialog implements NDialogQueueInterface {
 
             @Override
             public void onCancel(DialogInterface dialog) {
-                if (mQueueListener != null)
-                    mQueueListener.onGone();
-
                 isShowing = false;
             }
         });
@@ -145,10 +139,6 @@ public class TBasicAlertDialog implements NDialogQueueInterface {
             TLog.e(TAG + " cancel", "alert is null");
     }
 
-    public void setQueueListener(NDialogQueueListener mQueueListener) {
-        this.mQueueListener = mQueueListener;
-    }
-
     public boolean isShowing() {
         return isShowing;
     }
@@ -157,11 +147,6 @@ public class TBasicAlertDialog implements NDialogQueueInterface {
         this.title = title;
         this.rightText = yes;
         this.leftText = no;
-    }
-
-    @Override
-    public String getQueueTag() {
-        return mQueueTag;
     }
 
     public TBasicAlertDialog setQueueTag(String mQueueTag) {

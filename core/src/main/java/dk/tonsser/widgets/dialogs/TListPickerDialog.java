@@ -11,15 +11,12 @@ import android.content.DialogInterface.OnClickListener;
 
 import java.util.List;
 
-import dk.tonsser.controllers.dialogqueuing.NDialogQueueInterface;
-import dk.tonsser.controllers.dialogqueuing.NDialogQueueListener;
 import dk.tonsser.utils.TLog;
 
-public class TListPickerDialog implements NDialogQueueInterface {
+public class TListPickerDialog {
     private boolean isShowing = false;
     private AlertDialog alert;
     private OnNListPickerDialogShowDismissListener mOnNListPickerDialogShowDismissListener;
-    private NDialogQueueListener mQueueListener;
     private String mQueueTag;
 
     /**
@@ -76,9 +73,6 @@ public class TListPickerDialog implements NDialogQueueInterface {
                 isShowing = false;
                 if (mOnNListPickerDialogShowDismissListener != null)
                     mOnNListPickerDialogShowDismissListener.onDismiss();
-
-                if (mQueueListener != null)
-                    mQueueListener.onGone();
             }
         });
         alert = builder.create();
@@ -114,19 +108,10 @@ public class TListPickerDialog implements NDialogQueueInterface {
         return isShowing;
     }
 
-    public void setQueueListener(NDialogQueueListener mQueueListener) {
-        this.mQueueListener = mQueueListener;
-    }
-
     public interface OnNListPickerDialogShowDismissListener {
         void onShow();
 
         void onDismiss();
-    }
-
-    @Override
-    public String getQueueTag() {
-        return mQueueTag;
     }
 
     public void setQueueTag(String mQueueTag) {

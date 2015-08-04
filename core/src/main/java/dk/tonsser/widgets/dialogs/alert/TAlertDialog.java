@@ -153,15 +153,4 @@ public class TAlertDialog extends TDialog {
         return this;
     }
 
-    @Override
-    public String getQueueTag() {
-        if (queueTag != null)
-            return queueTag;
-        else if (mTAlertDialogOptions == null)
-            return null;
-        else
-            return mTAlertDialogOptions.getHeader() + mTAlertDialogOptions.getMessage();
-    }
-
-
 }
