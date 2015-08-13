@@ -5,11 +5,14 @@ android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
+    def coreVersion = 1.1
+
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        version coreVersion
+        versionName "${coreVersion}"
     }
     buildTypes {
         release {
@@ -49,6 +52,6 @@ task installArchives(type: Upload) {
         configuration = configurations.default
         pom.groupId = 'com.tonsser'
         pom.artifactId = 'core'
-        pom.version = '1'
+        pom.version = getVersion()
     }
 }
