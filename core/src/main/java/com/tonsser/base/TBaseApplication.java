@@ -14,9 +14,6 @@ public abstract class TBaseApplication extends Application {
 
     private static String TAG = TBaseApplication.class.getName();
 
-    //MODES
-    public boolean DEBUG = false;
-
     //SETTINGS
     public String WEBSERVICE_URL_LIVE;
     public String WEBSERVICE_URL_DEBUG;
@@ -63,7 +60,6 @@ public abstract class TBaseApplication extends Application {
         IS_APPLICATION_LOADED = true;
         super.onCreate();
     }
-
 
     @Override
     public void onLowMemory() {

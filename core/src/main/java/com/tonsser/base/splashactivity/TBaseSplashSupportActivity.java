@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.tonsser.base.TBaseApplication;
 import com.tonsser.base.TBaseFragmentActivity;
+import com.tonsser.core.BuildConfig;
 import com.tonsser.core.R;
 import com.tonsser.utils.TBuild;
 import com.tonsser.utils.TLog;
@@ -44,7 +45,7 @@ public abstract class TBaseSplashSupportActivity extends TBaseFragmentActivity {
     }
 
     private void setDebugOverlay() {
-        if (TBaseApplication.getInstance().DEBUG) {
+        if (BuildConfig.DEBUG) {
             splashDebugTv.setVisibility(View.VISIBLE);
             splashVersionTv.setVisibility(View.VISIBLE);
             splashVersionTv.setText("Version: " + TBuild.getVersionName(getBaseContext()));
@@ -69,7 +70,7 @@ public abstract class TBaseSplashSupportActivity extends TBaseFragmentActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (TBaseApplication.getInstance().DEBUG && clickToContinueInDebug) {
+        if (BuildConfig.DEBUG && clickToContinueInDebug) {
             View debugView = getLayoutInflater().inflate(R.layout.splash_debug_text, null, true);
             addContentView(debugView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             initDebugOverlay();
