@@ -5,13 +5,57 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
+import android.support.annotation.Nullable;
 import android.util.Base64;
 
+import com.tonsser.base.TBaseApplication;
+
+import java.lang.reflect.Field;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class TBuild {
     private static String TAG;
+
+    private static final String BUILD_CONFIG = getPackageName(TBaseApplication.getInstance()) + ".BuildConfig";
+
+    public static final boolean DEBUG = getDebug();
+    public static final String APPLICATION_ID = (String) getBuildConfigValue("APPLICATION_ID");
+    public static final String BUILD_TYPE = (String) getBuildConfigValue("BUILD_TYPE");
+    public static final String FLAVOR = (String) getBuildConfigValue("FLAVOR");
+    public static final int VERSION_CODE = getVersionCode();
+    public static final String VERSION_NAME = (String) getBuildConfigValue("VERSION_NAME");
+
+    private static boolean getDebug() {
+        Object o = getBuildConfigValue("DEBUG");
+        if (o != null && o instanceof Boolean) {
+            return (Boolean) o;
+        } else {
+            return false;
+        }
+    }
+
+    private static int getVersionCode() {
+        Object o = getBuildConfigValue("VERSION_CODE");
+        if (o != null && o instanceof Integer) {
+            return (Integer) o;
+        } else {
+            return Integer.MIN_VALUE;
+        }
+    }
+
+    @Nullable
+    private static Object getBuildConfigValue(String fieldName) {
+        try {
+            Class c = Class.forName(BUILD_CONFIG);
+            Field f = c.getDeclaredField(fieldName);
+            f.setAccessible(true);
+            return f.get(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      * This method will return packageName, can also return null on error

@@ -3,7 +3,6 @@ package com.tonsser.utils;
 import android.util.Log;
 
 import com.tonsser.base.TBaseApplication;
-import com.tonsser.core.BuildConfig;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -21,11 +20,11 @@ public class TLog {
     }
 
     public static boolean isDebugEnabled() {
-        return TBaseApplication.getInstance() == null || BuildConfig.DEBUG;
+        return TBaseApplication.getInstance() == null || TBuild.DEBUG;
     }
 
     public static void d(String tag, String msg) {
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.d(tag, msg);
     }
 
@@ -37,12 +36,12 @@ public class TLog {
             e("NLOG e", e);
         }
 
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.d(tag, msg);
     }
 
     public static void w(String tag, String msg) {
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.w(tag, msg);
 
     }
@@ -55,12 +54,12 @@ public class TLog {
             e("NLOG e", e);
         }
 
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.w(tag, msg);
     }
 
     public static void i(String tag, String msg) {
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.i(tag, msg);
 
     }
@@ -73,12 +72,12 @@ public class TLog {
             e("NLOG e", e);
         }
 
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.i(tag, msg);
     }
 
     public static void v(String tag, String msg) {
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.v(tag, msg);
     }
 
@@ -90,7 +89,7 @@ public class TLog {
             e("NLOG e", e);
         }
 
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.v(tag, msg);
     }
 
@@ -100,7 +99,7 @@ public class TLog {
 
     public static void e(String tag, Exception e) {
         Log.e(tag, e.toString());
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             e.printStackTrace();
     }
 
@@ -113,7 +112,7 @@ public class TLog {
         }
 
         Log.e(tag, e.toString());
-        if (TBaseApplication.getInstance() == null || BuildConfig.DEBUG)
+        if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             e.printStackTrace();
     }
 
@@ -255,7 +254,7 @@ public class TLog {
             e("NLOG e", e);
         }
 
-        Log.i(tag, "* " + method);
+        TLog.i(tag, "* " + method);
 
         for (int i = currentIndex; i < Thread.currentThread().getStackTrace().length; i++) {
             if (ste[i].getClassName().startsWith(packageName) || ste[i].getClassName().startsWith(thisPackageName)) {
@@ -265,7 +264,7 @@ public class TLog {
                 String methodName = ste[i].getMethodName();
                 String lineNumber = String.valueOf(ste[i].getLineNumber());
 
-                Log.i(tag, method + " at " + fullClassName + "." + methodName + "(" + className + ".java:" + lineNumber + ")");
+                TLog.i(tag, method + " at " + fullClassName + "." + methodName + "(" + className + ".java:" + lineNumber + ")");
             }
         }
     }
