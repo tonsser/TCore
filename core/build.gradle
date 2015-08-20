@@ -6,7 +6,7 @@ android {
     buildToolsVersion "22.0.1"
 
 //    Up this to bump version number
-    def coreVersion = 1.1
+    def coreVersion = 1.2
 
     defaultConfig {
         minSdkVersion 14
@@ -27,22 +27,15 @@ android {
 }
 
 dependencies {
-//    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.1'
-
-    compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
-    compile 'org.apache.httpcomponents:httpmime:4.3.5'
-    compile 'com.google.code.gson:gson:2.3'
-    compile ('com.google.android.gms:play-services:7.3.0') {
-        exclude group: 'com.google.android.gms', module: 'play-services-analytics'
-    }
-    compile 'org.apache.commons:commons-lang3:3.3.2'
-    compile 'com.squareup.okio:okio:1.2.0'
-    compile 'net.hockeyapp.android:HockeySDK:3.5.0'
+//    compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
+//    compile 'org.apache.httpcomponents:httpmime:4.3.5'
+//    compile 'org.apache.commons:commons-lang3:3.3.2'
+//    compile 'com.squareup.okio:okio:1.2.0'
 }
 
 repositories {
-    mavenCentral()
+//    mavenCentral()
     mavenLocal()
     jcenter()
 }
