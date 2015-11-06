@@ -1,5 +1,6 @@
 package com.tonsser.utils;
 
+import android.os.Bundle;
 import android.util.Log;
 
 import com.tonsser.base.TBaseApplication;
@@ -347,6 +348,17 @@ public class TLog {
 
     public static void t(boolean b) {
         TLog.d(TEST, String.valueOf(b));
+    }
+
+    public static void bundle(Bundle bundle) {
+        if (bundle == null) {
+            TLog.w("TLog.bundle() failed. Bundle was null");
+            return;
+        }
+
+        for (String key : bundle.keySet()) {
+            d("Bundle key: " + key + " = \"" + bundle.get(key) + "\"");
+        }
     }
 
 }

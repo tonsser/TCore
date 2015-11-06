@@ -247,5 +247,4 @@ public class TUtils {
     public interface NCallbackListener {
         void onCallback();
     }
-
 }
