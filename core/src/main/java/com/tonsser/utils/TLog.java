@@ -235,7 +235,6 @@ public class TLog {
         String method = "null";
 
         StackTraceElement[] ste = Thread.currentThread().getStackTrace();
-
         int currentIndex = -1;
         for (int i = 0; i < ste.length; i++) {
             if (ste[i].getMethodName().compareTo("s") == 0) {
@@ -243,7 +242,6 @@ public class TLog {
                 break;
             }
         }
-
         try {
             tag = ste[currentIndex].getClassName();
             method = ste[currentIndex].getMethodName();
@@ -255,7 +253,7 @@ public class TLog {
             e("NLOG e", e);
         }
 
-        TLog.i(tag, "* " + method);
+        i("* " + method);
 
         for (int i = currentIndex; i < Thread.currentThread().getStackTrace().length; i++) {
             if (ste[i].getClassName().startsWith(packageName) || ste[i].getClassName().startsWith(thisPackageName)) {
@@ -265,7 +263,7 @@ public class TLog {
                 String methodName = ste[i].getMethodName();
                 String lineNumber = String.valueOf(ste[i].getLineNumber());
 
-                TLog.i(tag, method + " at " + fullClassName + "." + methodName + "(" + className + ".java:" + lineNumber + ")");
+                TLog.i(method + " at " + fullClassName + "." + methodName + "(" + className + ".java:" + lineNumber + ")");
             }
         }
     }
@@ -310,7 +308,7 @@ public class TLog {
             e("NLOG e", e);
         }
 
-        Log.i(tag, "* " + method + message);
+        i(message + " - " + "* " + method);
 
         for (int i = currentIndex; i < Thread.currentThread().getStackTrace().length; i++) {
             if (ste[i].getClassName().startsWith(packageName) || ste[i].getClassName().startsWith(thisPackageName)) {
@@ -320,7 +318,7 @@ public class TLog {
                 String methodName = ste[i].getMethodName();
                 String lineNumber = String.valueOf(ste[i].getLineNumber());
 
-                Log.i(tag, method + " at " + fullClassName + "." + methodName + "(" + className + ".java:" + lineNumber + ") ");
+                i(message + " - " + method + " at " + fullClassName + "." + methodName + "(" + className + ".java:" + lineNumber + ") ");
             }
         }
     }
