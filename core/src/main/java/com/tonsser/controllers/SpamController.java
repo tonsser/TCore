@@ -14,6 +14,7 @@ public class SpamController {
     private static SpamController instance;
     private Timer timer;
     private boolean globalSpamBoolean = true;
+    public static boolean loggingEnabled = false;
     private HashMap<String, Boolean> data = new HashMap<String, Boolean>();
     public static final int SPAM_CONTROLL_TIMER_DOUBLECLICK = 50;
     public static final int SPAM_CONTROLL_TIMER_SHORT = 250;
@@ -67,22 +68,31 @@ public class SpamController {
         if (timer != null)
             timer.cancel();
 
-        timer = new Timer();
+        Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             public void run() {
                 if (data.containsKey(key)) {
+                    if (loggingEnabled) {
+                        TLog.i("spamControl run remove " + data.containsKey(key) + " " + key);
+                    }
                     data.remove(key);
-                } else
-                    TLog.d("SpamController spamControll time has passed", "Key: " + key + " was deleted, which it should not be, adding it");
-
-                data.put(key, true);
+                } else {
+                    if (loggingEnabled) {
+                        TLog.w("SpamController spamControl time has passed", "Key: " + key + " was deleted, which it should not be, adding it");
+                    }
+                }
             }
         };
         timer.schedule(timerTask, new Date(System.currentTimeMillis() + spamDelayMs));
 
         if (data.containsKey(key)) {
             data.remove(key);
-            TLog.d("SpamController spamControll", "Key: " + key + " was already existing, deleting it and adding new");
+            if (loggingEnabled) {
+                TLog.w("SpamController spamControl", "Key: " + key + " was already existing, deleting it and adding new");
+            }
+        }
+        if (loggingEnabled) {
+            TLog.i("spamControl run put " + key);
         }
         data.put(key, false);
     }

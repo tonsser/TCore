@@ -23,11 +23,11 @@ public abstract class TBaseApplication extends Application {
     //STATES
     public boolean IS_APPLICATION_LOADED = false;
 
-    private static TBaseApplication instance;
+    protected static TBaseApplication instance;
 
-    public static TBaseApplication getInstance() {
-        return instance;
-    }
+//    public static synchronized TBaseApplication getInstance() {
+//        return instance;
+//    }
 
     public static void broadcastFinishAll(Context mContext) {
         Intent broadcastIntent = new Intent();
@@ -72,4 +72,8 @@ public abstract class TBaseApplication extends Application {
     protected abstract void initApplication();
 
     protected abstract void loadInitData();
+
+    public static synchronized TBaseApplication getInstance() {
+        return instance;
+    }
 }
