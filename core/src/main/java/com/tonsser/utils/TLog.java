@@ -12,11 +12,27 @@ public class TLog {
 
     private static String TEST = "test";
 
-    public static void d(Map<String, String> map) {
-        for (Entry<String, String> entry : map.entrySet()) {
+//    public static void d(Map<String, String> map) {
+//        for (Entry<String, String> entry : map.entrySet()) {
+//            String key = entry.getKey();
+//            String value = entry.getValue();
+//            TLog.d(key, value);
+//        }
+//    }
+
+    public static void d(String message, Map<String, Object> map) {
+        for (Entry<String, Object> entry : map.entrySet()) {
             String key = entry.getKey();
-            String value = entry.getValue();
-            TLog.d(key, value);
+            Object value = entry.getValue();
+            TLog.d(message + " - " + key, String.valueOf(value));
+        }
+    }
+
+    public static void d(Map<String, Object> map) {
+        for (Entry<String, Object> entry : map.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            TLog.d(key, String.valueOf(value));
         }
     }
 
