@@ -17,7 +17,9 @@ import java.security.NoSuchAlgorithmException;
 public class TBuild {
     private static String TAG;
 
-    private static final String BUILD_CONFIG = getPackageName(TBaseApplication.getInstance()) + ".BuildConfig";
+
+    private static final String BUILD_CONFIG = TBaseApplication.PACKAGE_WITHOUT_FLAVOUR + ".BuildConfig";
+//    private static final String BUILD_CONFIG = getPackageName(TBaseApplication.getInstance()) + ".BuildConfig";
 
     public static final boolean DEBUG = getDebug();
     public static final String APPLICATION_ID = (String) getBuildConfigValue("APPLICATION_ID");

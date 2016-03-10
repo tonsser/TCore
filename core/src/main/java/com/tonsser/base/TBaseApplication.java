@@ -13,6 +13,7 @@ import com.tonsser.utils.TLog;
 public abstract class TBaseApplication extends Application {
 
     private static String TAG = TBaseApplication.class.getName();
+    public static String PACKAGE_WITHOUT_FLAVOUR;
 
     //SETTINGS
     public String WEBSERVICE_URL_LIVE;
