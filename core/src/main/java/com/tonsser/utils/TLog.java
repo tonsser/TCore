@@ -21,6 +21,17 @@ public class TLog {
 //    }
 
     public static void d(String message, Map<String, Object> map) {
+
+        if (map == null) {
+            TLog.w(message + " - " + map, "Map is null");
+            return;
+        }
+
+        if (map.size() == 0) {
+            TLog.d(message + " - " + map, "Map is empty");
+            return;
+        }
+
         for (Entry<String, Object> entry : map.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
