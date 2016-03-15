@@ -7,7 +7,7 @@ android {
 
 //    Up this to bump version number
     def coreVersion = 1.8
-    def coreVersionCode = 10
+    def coreVersionCode = 11
 
     defaultConfig {
         minSdkVersion 14

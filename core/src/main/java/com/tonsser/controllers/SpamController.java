@@ -116,7 +116,9 @@ public class SpamController {
         if (data.containsKey(key))
             return data.get(key);
         else {
-            TLog.d(" SpamController isReady(key)", "Key: " + key + " was not found returning true");
+            if (loggingEnabled) {
+                TLog.d(" SpamController isReady(key)", "Key: " + key + " was not found returning true");
+            }
             return true;
         }
     }
