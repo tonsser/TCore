@@ -205,18 +205,26 @@ public class ScreenParameters {
         return statusBarHeight;
     }
 
+    /**
+     * @param mContext
+     * @return getActionBarHeight();
+     * @Deprecated It's not possible to get the actionBarSize attr from a library.
+     * I've tried other methods as well without luck.
+     */
     public static int getActionBarHeight(Context mContext) {
-        if (mContext == null) {
-            TLog.e(TAG + " getActionBarHeight", "Context was null, returning 48dp");
-            return toPx(48);
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return mContext.getResources().getDimensionPixelSize(R.dimen.abc_action_bar_default_height_material);
-        }
-
-        return ScreenParameters.toPx(48);
+        return getActionBarHeight();
     }
+
+    /**
+     * Returns a hardcoded call to toPx(56)
+     * It's not possible to get the actionBarSize attr from a library.
+     * I've tried other methods as well without luck.
+     * @return toPx(56);
+     */
+    public static int getActionBarHeight() {
+        return toPx(56);
+    }
+
 
     /**
      * Will return statusbar + actionbar height if transulent
