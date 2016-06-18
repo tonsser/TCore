@@ -104,6 +104,33 @@ public class TLog {
             Log.i(tag, msg);
     }
 
+    public static void v(Map<String, Object> map) {
+        for (Entry<String, Object> entry : map.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            TLog.v(key, String.valueOf(value));
+        }
+    }
+
+    public static void v(String message, Map<String, Object> map) {
+
+        if (map == null) {
+            TLog.w(message + " - " + map, "Map is null");
+            return;
+        }
+
+        if (map.size() == 0) {
+            TLog.v(message + " - " + map, "Map is empty");
+            return;
+        }
+
+        for (Entry<String, Object> entry : map.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            TLog.v(message + " - " + key, String.valueOf(value));
+        }
+    }
+
     public static void v(String tag, String msg) {
         if (TBaseApplication.getInstance() == null || TBuild.DEBUG)
             Log.v(tag, msg);
