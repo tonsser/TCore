@@ -378,7 +378,7 @@ public class TLog {
         }
     }
 
-    private void viewHierarchy(ViewGroup view) {
+    public static void viewHierarchy(ViewGroup view) {
         TLog.d("logHierarchy " + view.getId() + " " + view);
         for (int i = 0; i < view.getChildCount(); i++) {
             if (view.getChildAt(i) instanceof ViewGroup) {
