@@ -2,6 +2,7 @@ package com.tonsser.utils;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import com.tonsser.base.TBaseApplication;
 
@@ -377,6 +378,16 @@ public class TLog {
         }
     }
 
+    private void viewHierarchy(ViewGroup view) {
+        TLog.d("logHierarchy " + view.getId() + " " + view);
+        for (int i = 0; i < view.getChildCount(); i++) {
+            if (view.getChildAt(i) instanceof ViewGroup) {
+                viewHierarchy((ViewGroup) view.getChildAt(i));
+            } else {
+                TLog.d("logHierarchy " + i + " " + view.getChildAt(i).getId() + " " + view.getChildAt(i));
+            }
+        }
+    }
 
     public static void t() {
         TLog.d(TEST, "test");
