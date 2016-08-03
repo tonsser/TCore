@@ -1,5 +1,7 @@
 package com.tonsser.utils;
 
+import android.text.format.DateUtils;
+
 import com.tonsser.utils.math.TUnits;
 
 import java.util.Date;
@@ -85,6 +87,7 @@ public class TTimeFormater {
     }
 
     /**
+     * @Deprecated use getHumanReadableTimeAgo(Date) instead
      * This will return fitting string in english
      * just now
      * a minute ago
@@ -102,6 +105,7 @@ public class TTimeFormater {
     }
 
     /**
+     * @Deprecated use getHumanReadableTimeAgo(Date) instead.
      * This will return fitting string, with the inputted Strings
      * just now
      * a minute ago
@@ -147,5 +151,15 @@ public class TTimeFormater {
         } else {
             return diff / TUnits.DAY_IN_MS + " " + daysAgo;
         }
+    }
+
+    public static String getHumanReadableTimeAgo(Date date) {
+
+        int flags = DateUtils.FORMAT_SHOW_DATE |
+                DateUtils.FORMAT_NO_YEAR |
+                DateUtils.FORMAT_ABBREV_RELATIVE;
+        Date now = new Date();
+
+        return DateUtils.getRelativeTimeSpanString(date.getTime(), now.getTime(), DateUtils.MINUTE_IN_MILLIS, flags).toString();
     }
 }
