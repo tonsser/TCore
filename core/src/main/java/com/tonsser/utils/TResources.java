@@ -2,8 +2,9 @@ package com.tonsser.utils;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 
 /**
@@ -58,5 +59,13 @@ public class TResources {
         }
 
         return csl;
+    }
+
+    public static Drawable getDrawable(Context context, @DrawableRes int drawableRes) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return context.getResources().getDrawable(drawableRes, context.getTheme());
+        } else {
+            return context.getResources().getDrawable(drawableRes);
+        }
     }
 }

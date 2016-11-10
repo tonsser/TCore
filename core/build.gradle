@@ -6,7 +6,7 @@ android {
     buildToolsVersion '23.0.2'
 
 //    Up this to bump version number
-    def coreVersion = 1.13
+    def coreVersion = 1.14
     def coreVersionCode = 16
 
     defaultConfig {
